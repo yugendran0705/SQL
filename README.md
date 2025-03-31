@@ -6,22 +6,19 @@
 
 ## Database: `sample`
 
-### Users Table
-| Column Name  | Data Type      | Constraints               | Description                   |
-|--------------|----------------|----------------------------|-------------------------------|
-| `id`         | `SERIAL`       | `PRIMARY KEY`              | Unique identifier for each user |
-| `name`       | `VARCHAR(100)` | `NOT NULL`                 | Name of the user              |
-| `email`      | `VARCHAR(100)` | `UNIQUE NOT NULL`          | Email address (unique)        |
-| `age`        | `INT`          |                            | Age of the user               |
-| `created_at` | `TIMESTAMP`    | `DEFAULT CURRENT_TIMESTAMP` | Timestamp of record creation  |
+---
 
---- 
+## **What is a Join?**
+- A **JOIN** in SQL is used to combine rows from two or more tables based on a **related column** between them.  
+- It allows you to retrieve data from multiple tables in a **single query**.  
+--
+## **Key Differences**
 
-# 📚 Explanation
+| **Join Type**     | **Includes**                       | **NULL Values in Missing Matches** |
+|-------------------|-----------------------------------|----------------------------------|
+| `INNER JOIN`      | Only matching rows                | No NULL values                  |
+| `LEFT JOIN`       | All rows from the left table      | NULL for missing right table rows |
+| `RIGHT JOIN`      | All rows from the right table     | NULL for missing left table rows  |
+| `FULL OUTER JOIN` | All rows from both tables         | NULL for missing matches         |
 
-- **`SELECT department, COUNT(*) AS user_count`** → Selects the `department` column and counts the number of users in each department. The result is labeled as `user_count`.  
-- **`FROM users`** → Specifies the `users` table to query.  
-- **`WHERE age > 25`** → Filters records where `age` is **greater than 25**.  
-- **`GROUP BY department`** → Groups the filtered results by `department`.  
-- **`HAVING COUNT(*) >= 1`** → Includes only groups that have **at least 1 user** in the result.  
-    - `HAVING` is used to filter groups **after aggregation**, while `WHERE` filters individual rows **before aggregation**.  
+
