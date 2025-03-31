@@ -8,17 +8,27 @@
 
 ---
 
-## **What is a Join?**
-- A **JOIN** in SQL is used to combine rows from two or more tables based on a **related column** between them.  
-- It allows you to retrieve data from multiple tables in a **single query**.  
---
-## **Key Differences**
+### Nested Queries
 
-| **Join Type**     | **Includes**                       | **NULL Values in Missing Matches** |
-|-------------------|-----------------------------------|----------------------------------|
-| `INNER JOIN`      | Only matching rows                | No NULL values                  |
-| `LEFT JOIN`       | All rows from the left table      | NULL for missing right table rows |
-| `RIGHT JOIN`      | All rows from the right table     | NULL for missing left table rows  |
-| `FULL OUTER JOIN` | All rows from both tables         | NULL for missing matches         |
+Nested queries, also known as subqueries, are queries embedded within another SQL query. They are used to perform operations that depend on the results of another query. A nested query is enclosed in parentheses and can be used in SELECT, INSERT, UPDATE, or DELETE statements.
 
+#### Example:
 
+```sql
+-- Find customers who have placed more than one order
+SELECT name, email
+FROM customers
+WHERE id IN (
+    SELECT customer_id
+    FROM orders
+    GROUP BY customer_id
+    HAVING COUNT(*) > 1
+);
+```
+
+#### Key Points:
+- Subqueries can return a single value (scalar), a list of values, or a table.
+- They can be used in various clauses like WHERE, HAVING, or FROM.
+- Proper indexing can improve the performance of queries involving subqueries.
+
+Nested queries are a powerful tool for solving complex problems in SQL.
