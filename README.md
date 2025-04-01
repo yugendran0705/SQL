@@ -7,64 +7,30 @@
 ## Database: `sample`
 
 ---
-## Date and Time Functions
 
-### Common Date and Time Functions
+### Ranking Functions
 
-1. **CURRENT_DATE**  
-    Returns the current date.  
-    Example:  
-    ```sql
-    SELECT CURRENT_DATE;
-    ```
+- **`RANK()`**  
+    Assigns a rank to each row in a result set. Skips ranking for duplicate values.  
+    **Example Output:** `1, 2, 2, 4`
 
-2. **CURRENT_TIME**  
-    Returns the current time.  
-    Example:  
-    ```sql
-    SELECT CURRENT_TIME;
-    ```
+- **`DENSE_RANK()`**  
+    Assigns a rank to each row without gaps in ranking.  
+    **Example Output:** `1, 2, 2, 3`
 
-3. **NOW()**  
-    Returns the current date and time (timestamp).  
-    Example:  
-    ```sql
-    SELECT NOW();
-    ```
+- **`ROW_NUMBER()`**  
+    Assigns a unique rank to each row, ignoring duplicates.  
+    **Example Output:** `1, 2, 3, 4`
 
-4. **AGE(timestamp, timestamp)**  
-    Calculates the difference between two timestamps.  
-    Example:  
-    ```sql
-    SELECT AGE('2023-01-01', '2022-01-01');
-    ```
+---
 
-5. **DATE_PART(field, source)**  
-    Extracts a specific part of a date/time value (e.g., year, month, day).  
-    Example:  
-    ```sql
-    SELECT DATE_PART('year', NOW());
-    ```
+### Window Functions
 
-6. **TO_CHAR(timestamp, format)**  
-    Formats a timestamp into a string based on a specified format.  
-    Example:  
-    ```sql
-    SELECT TO_CHAR(NOW(), 'YYYY-MM-DD');
-    ```
+- **`LAG(price, 1)`**  
+    Retrieves the previous order's price for the customer.
 
-### Example Usage
+- **`LEAD(price, 1)`**  
+    Retrieves the next order's price for the customer.
 
-```sql
--- Get the current date and time
-SELECT CURRENT_DATE AS today, CURRENT_TIME AS current_time;
-
--- Calculate the age difference between two dates
-SELECT AGE('2023-12-31', '2000-01-01') AS age_difference;
-
--- Extract the month from the current date
-SELECT DATE_PART('month', NOW()) AS current_month;
-
--- Format the current timestamp
-SELECT TO_CHAR(NOW(), 'DD Mon YYYY HH24:MI:SS') AS formatted_date;
-```
+- **`PARTITION BY customer_id`**  
+    Ranks orders per customer separately. Orders for each customer are sorted by `price DESC`.
