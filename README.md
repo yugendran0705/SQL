@@ -24,13 +24,9 @@
 
 ---
 
-### Window Functions
+### Common Table Expressions (CTEs)
 
-- **`LAG(price, 1)`**  
-    Retrieves the previous order's price for the customer.
-
-- **`LEAD(price, 1)`**  
-    Retrieves the next order's price for the customer.
-
-- **`PARTITION BY customer_id`**  
-    Ranks orders per customer separately. Orders for each customer are sorted by `price DESC`.
+- **`WITH OrderSummary AS (...)`**  
+    Creates a temporary named result set.  
+    Aggregates total orders and total spending per customer.  
+    The main query joins customers with `OrderSummary`.
